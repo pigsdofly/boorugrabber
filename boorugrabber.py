@@ -45,7 +45,7 @@ class Grabber:
         for pid, url in image_dict.items():
             filetype = url.split('.')[-1]
             filename = self.path + str(pid) + "." + filetype
-            response = requests.get(url)
+            response = requests.get(url, stream=True)
             with open(filename, 'wb') as out_file:
                 shutil.copyfileobj(response.raw, out_file)
             del response
