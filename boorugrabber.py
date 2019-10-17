@@ -36,7 +36,10 @@ class Grabber:
         
         response_dict = {}
         for i in req:
-            response_dict[i['id']] = i['file_url']
+            if 'file_url' in i:
+                response_dict[i['id']] = i['file_url']
+            else:
+                print("Image "+i['id']+" could not be downloaded.")
         return response_dict
 
     def download(self):
